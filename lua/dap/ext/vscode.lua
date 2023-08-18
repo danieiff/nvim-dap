@@ -119,6 +119,7 @@ end
 
 
 function M._load_json(jsonstr)
+  jsonstr = jsonstr:gsub(',(%s+])', '%1')
   local data = assert(M.json_decode(jsonstr), "launch.json must contain a JSON object")
   local inputs = create_inputs(data.inputs or {})
   local has_inputs = next(inputs) ~= nil
